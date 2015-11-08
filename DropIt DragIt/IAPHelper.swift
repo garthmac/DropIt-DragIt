@@ -51,10 +51,6 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     }
     func addCredits(credits:Int) {
         Settings().availableCredits += credits
-//        if let tabBarController = UIApplication.sharedApplication().keyWindow?.rootViewController as? UITabBarController {
-//            let shopTabBarItem = tabBarController.tabBar.items![0]
-//            shopTabBarItem.badgeValue = Settings().availableCredits.description
-//        }
     }
     var list = [SKProduct]()
     var p = SKProduct()

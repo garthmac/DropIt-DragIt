@@ -12,14 +12,15 @@ class Settings {
     
     struct Const {
         static let AutoStartKey = "Settings.Auto.Start"
-        static let AvailableCreditsKey = "Settings.Available" //
-        static let ChangeKey = "Settings.Change.Indicator" //if the settings have been changed:
-        static let HintIndexKey = "Settings.Hint.Index"
-        static let PurchasedUidKey = "Settings.Purchased.Ball.Uid"
-        static let SkinsKey = "Settings.Skins" //purchased ball skins
+        static let AvailableCreditsKey = "Settings.Available"
         static let BackDropChoiceKey = "Settings.BackDrop.Choice" // 0/1/2/3/4/5
         static let BackDropsKey = "Settings.Back.Drops"
+        static let BonusTimeKey = "Settings.Bonus.Time"
+        static let ChangeKey = "Settings.Change.Indicator" //if the settings have been changed:
+        static let HintIndexKey = "Settings.Hint.Index"
         static let MoveDirectionKey = "Settings.Move.Direction"
+        static let PurchasedUidKey = "Settings.Purchased.Ball.Uid"
+        static let SkinsKey = "Settings.Skins" //purchased ball skins
     }
     let defaults = NSUserDefaults.standardUserDefaults()
     var autoStart: Bool {
@@ -34,6 +35,10 @@ class Settings {
         get { return defaults.objectForKey(Const.BackDropChoiceKey) as? Int ?? 4 }
         set { defaults.setObject(newValue, forKey: Const.BackDropChoiceKey) }
     }
+    var bonusTime: Int {
+        get { return defaults.objectForKey(Const.BonusTimeKey) as? Int ?? 12 }
+        set { defaults.setObject(newValue, forKey: Const.BonusTimeKey) }
+    }
     var lastHint: Int {
         get { return defaults.objectForKey(Const.HintIndexKey) as? Int ?? 0 }
         set { defaults.setObject(newValue, forKey: Const.HintIndexKey) }
@@ -43,7 +48,7 @@ class Settings {
         set { defaults.setObject(newValue, forKey: Const.MoveDirectionKey) }
     }
     var mybackDrops: [String] {
-        get { return defaults.objectForKey(Const.BackDropsKey) as? [String] ?? ["digital_art_1024x1024"]}
+        get { return defaults.objectForKey(Const.BackDropsKey) as? [String] ?? ["Black_hole2048.jpg"]}
         set { defaults.setObject(newValue, forKey: Const.BackDropsKey) }
     }
     var mySkins: [String] {

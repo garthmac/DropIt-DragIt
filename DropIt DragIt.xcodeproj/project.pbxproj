@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		716A4DE31BE29B6D00E66667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A4DE21BE29B6D00E66667 /* AppDelegate.swift */; };
 		716A4DE51BE29B6D00E66667 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A4DE41BE29B6D00E66667 /* ViewController.swift */; };
-		716A4DE81BE29B6D00E66667 /* Main0.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716A4DE61BE29B6D00E66667 /* Main0.storyboard */; };
 		716A4DEA1BE29B6D00E66667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 716A4DE91BE29B6D00E66667 /* Assets.xcassets */; };
 		716A4DED1BE29B6D00E66667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716A4DEB1BE29B6D00E66667 /* LaunchScreen.storyboard */; };
 		716A4DF81BE29B6E00E66667 /* DropIt_DragItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A4DF71BE29B6E00E66667 /* DropIt_DragItTests.swift */; };
@@ -64,8 +63,12 @@
 		716A4E741BE2B4FA00E66667 /* sunrise_glory-wide.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 716A4E5E1BE2B4FA00E66667 /* sunrise_glory-wide.jpg */; };
 		716A4E761BE2B53100E66667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716A4E751BE2B53100E66667 /* Main.storyboard */; };
 		716A4E781BE2BA6800E66667 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A4E771BE2BA6800E66667 /* ShopViewController.swift */; };
-		716A4E7C1BE2F85900E66667 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 716A4E7B1BE2F85900E66667 /* Settings.bundle */; };
 		71A827051BE9557900BFAD57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A827041BE9557900BFAD57 /* User.swift */; };
+		71A827071BEBD12E00BFAD57 /* spoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A827061BEBD12E00BFAD57 /* spoon.png */; };
+		71A8270B1BEC342E00BFAD57 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71A8270A1BEC342E00BFAD57 /* Comic Sans MS.ttf */; };
+		71A8270C1BEC372E00BFAD57 /* Comic Sans MS Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71A827091BEC2F1600BFAD57 /* Comic Sans MS Bold.ttf */; };
+		71A8270E1BEE939F00BFAD57 /* 1000Credits1-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A8270D1BEE939F00BFAD57 /* 1000Credits1-20.png */; };
+		71A827101BEE93AF00BFAD57 /* 1000Credits0-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A8270F1BEE93AF00BFAD57 /* 1000Credits0-20.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +92,6 @@
 		716A4DDF1BE29B6D00E66667 /* DropIt DragIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DropIt DragIt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		716A4DE21BE29B6D00E66667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		716A4DE41BE29B6D00E66667 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		716A4DE71BE29B6D00E66667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main0.storyboard; sourceTree = "<group>"; };
 		716A4DE91BE29B6D00E66667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		716A4DEC1BE29B6D00E66667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		716A4DEE1BE29B6D00E66667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,8 +153,12 @@
 		716A4E5E1BE2B4FA00E66667 /* sunrise_glory-wide.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise_glory-wide.jpg"; sourceTree = "<group>"; };
 		716A4E751BE2B53100E66667 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		716A4E771BE2BA6800E66667 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		716A4E7B1BE2F85900E66667 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71A827041BE9557900BFAD57 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		71A827061BEBD12E00BFAD57 /* spoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoon.png; sourceTree = "<group>"; };
+		71A827091BEC2F1600BFAD57 /* Comic Sans MS Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS Bold.ttf"; sourceTree = "<group>"; };
+		71A8270A1BEC342E00BFAD57 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
+		71A8270D1BEE939F00BFAD57 /* 1000Credits1-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1000Credits1-20.png"; sourceTree = "<group>"; };
+		71A8270F1BEE93AF00BFAD57 /* 1000Credits0-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1000Credits0-20.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,9 +216,6 @@
 				716A4E141BE29C0200E66667 /* BezierPathView.swift */,
 				716A4E121BE29C0200E66667 /* DropItBehavior.swift */,
 				716A4E131BE29C0200E66667 /* DropItViewController.swift */,
-				716A4DE61BE29B6D00E66667 /* Main0.storyboard */,
-				716A4E101BE29BF100E66667 /* Oval.swift */,
-				716A4E7B1BE2F85900E66667 /* Settings.bundle */,
 				716A4DE91BE29B6D00E66667 /* Assets.xcassets */,
 				716A4E751BE2B53100E66667 /* Main.storyboard */,
 				716A4E411BE2B2CE00E66667 /* DragItViewController.swift */,
@@ -222,6 +225,7 @@
 				716A4E771BE2BA6800E66667 /* ShopViewController.swift */,
 				716A4DEB1BE29B6D00E66667 /* LaunchScreen.storyboard */,
 				71A827041BE9557900BFAD57 /* User.swift */,
+				716A4E101BE29BF100E66667 /* Oval.swift */,
 				716A4DE41BE29B6D00E66667 /* ViewController.swift */,
 				716A4DEE1BE29B6D00E66667 /* Info.plist */,
 			);
@@ -251,6 +255,7 @@
 			children = (
 				716A4E1D1BE2B23600E66667 /* iTunesArtwork */,
 				716A4E1E1BE2B23600E66667 /* iTunesArtwork@2x */,
+				71A827081BEC2F0200BFAD57 /* Fonts */,
 				716A4E1F1BE2B24600E66667 /* Icons */,
 				716A4E341BE2B27200E66667 /* Images */,
 			);
@@ -277,7 +282,10 @@
 		716A4E341BE2B27200E66667 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				71A827061BEBD12E00BFAD57 /* spoon.png */,
 				716A4E351BE2B28C00E66667 /* 1000CreditsSWars1.png */,
+				71A8270F1BEE93AF00BFAD57 /* 1000Credits0-20.png */,
+				71A8270D1BEE939F00BFAD57 /* 1000Credits1-20.png */,
 				716A4E361BE2B28C00E66667 /* 1000Credits2-20.png */,
 				716A4E371BE2B28C00E66667 /* arrow_down.png */,
 				716A4E381BE2B28C00E66667 /* arrow_down@2x.png */,
@@ -307,6 +315,15 @@
 				716A4E5E1BE2B4FA00E66667 /* sunrise_glory-wide.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		71A827081BEC2F0200BFAD57 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				71A827091BEC2F1600BFAD57 /* Comic Sans MS Bold.ttf */,
+				71A8270A1BEC342E00BFAD57 /* Comic Sans MS.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,21 +430,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71A8270C1BEC372E00BFAD57 /* Comic Sans MS Bold.ttf in Resources */,
 				716A4E621BE2B4FA00E66667 /* bluePlanet.jpg in Resources */,
 				716A4E701BE2B4FA00E66667 /* peanuts-anim1.png in Resources */,
 				716A4E6A1BE2B4FA00E66667 /* peanuts-anim7.png in Resources */,
+				71A827101BEE93AF00BFAD57 /* 1000Credits0-20.png in Resources */,
 				716A4DED1BE29B6D00E66667 /* LaunchScreen.storyboard in Resources */,
 				716A4E641BE2B4FA00E66667 /* digital_art_1024x1024.jpg in Resources */,
 				716A4E6C1BE2B4FA00E66667 /* peanuts-anim5.png in Resources */,
 				716A4E2D1BE2B25A00E66667 /* Icon-76@2x.png in Resources */,
-				716A4E7C1BE2F85900E66667 /* Settings.bundle in Resources */,
 				716A4E2E1BE2B25A00E66667 /* Icon-Small-40.png in Resources */,
 				716A4E611BE2B4FA00E66667 /* Black_hole2048.jpg in Resources */,
 				716A4E681BE2B4FA00E66667 /* Outer_space_planets_earth_men_fantasy.jpg in Resources */,
+				71A8270B1BEC342E00BFAD57 /* Comic Sans MS.ttf in Resources */,
 				716A4E331BE2B25A00E66667 /* Icon-Small@3x.png in Resources */,
 				716A4E6D1BE2B4FA00E66667 /* peanuts-anim4.png in Resources */,
 				716A4E311BE2B25A00E66667 /* Icon-Small.png in Resources */,
 				716A4E2C1BE2B25A00E66667 /* Icon-76.png in Resources */,
+				71A827071BEBD12E00BFAD57 /* spoon.png in Resources */,
+				71A8270E1BEE939F00BFAD57 /* 1000Credits1-20.png in Resources */,
 				716A4E711BE2B4FA00E66667 /* peanuts-anim0.png in Resources */,
 				716A4DEA1BE29B6D00E66667 /* Assets.xcassets in Resources */,
 				716A4E741BE2B4FA00E66667 /* sunrise_glory-wide.jpg in Resources */,
@@ -443,7 +464,6 @@
 				716A4E5F1BE2B4FA00E66667 /* aurora-6-iss-150318.jpg in Resources */,
 				716A4E761BE2B53100E66667 /* Main.storyboard in Resources */,
 				716A4E401BE2B28C00E66667 /* arrow_up.png in Resources */,
-				716A4DE81BE29B6D00E66667 /* Main0.storyboard in Resources */,
 				716A4E6B1BE2B4FA00E66667 /* peanuts-anim6.png in Resources */,
 				716A4E6E1BE2B4FA00E66667 /* peanuts-anim3.png in Resources */,
 				716A4E721BE2B4FA00E66667 /* snoopy-tennis.png in Resources */,
@@ -529,14 +549,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		716A4DE61BE29B6D00E66667 /* Main0.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				716A4DE71BE29B6D00E66667 /* Base */,
-			);
-			name = Main0.storyboard;
-			sourceTree = "<group>";
-		};
 		716A4DEB1BE29B6D00E66667 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

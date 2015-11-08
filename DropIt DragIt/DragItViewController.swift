@@ -31,7 +31,9 @@ class DragItViewController: UIViewController {
     @IBOutlet weak var shopButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     struct Constants {
+        static let BonusTime = 12
         static let CreditsSegue = "Credits View"
+        static let DropItSegue = "DropIt View"
         static let ShopSegue = "SHOP View"
         static let DragItDemoURL = "https://player.vimeo.com/video/143505343?autoplay=1"
         static let Demo2URL = "https://player.vimeo.com/video/141500688?autoplay=1"
@@ -101,12 +103,15 @@ class DragItViewController: UIViewController {
         performSegueWithIdentifier(Constants.ShopSegue, sender: nil)
     }
     @IBAction func unwindFromModalViewController(segue: UIStoryboardSegue) {
-        //drag from back button to viewController exit button
+        //drag from back button to viewController exit button <--SHOP
         spinner?.stopAnimating()
     }
     @IBAction func unwindFromModalCREDITSViewController(segue: UIStoryboardSegue) {
-        //drag from back button to viewController exit button
+        //drag from back button to viewController exit button <--Demo
         demo3(nil)
+    }
+    @IBAction func unwindFromModalCREDITS2ViewController(segue: UIStoryboardSegue) {
+        //drag from back button to viewController exit button <--Back
     }
     func rotateView(view: UIView, degrees: CGFloat) {
         let delay = 2.0 * Double(NSEC_PER_SEC)
@@ -124,17 +129,21 @@ class DragItViewController: UIViewController {
                 view.transform = CGAffineTransformMakeRotation((deg2 * CGFloat(M_PI)) / 180.0)
             })
         }
-        Settings().availableCredits += 1
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue()) { //[weak self] (success) -> Void in
-//            self!.performSegueWithIdentifier(BouncerViewController.Constants.VideoSegue, sender: nil)
-            self.boundsChanged()  //added for test only
-            self.level++
-            self.earnCoin()
+        dispatch_after(time, dispatch_get_main_queue()) { [weak self] (success) -> Void in
+            self!.boundsChanged()  //added
+            self!.level += 1
+            self!.earnCoin()
+        }
+        if level % 3 == 0 {
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) { [weak self] (success) -> Void in
+                self!.performSegueWithIdentifier(Constants.DropItSegue, sender: nil)   //--> bonus segue
+            }
         }
         for (_,circle) in circleViewDict {
             UIView.animateWithDuration(2.0, animations: {
-                circle.center = self.goalView.center
+                circle.center = self.translatedGoalCenter
                 circle.alpha = 0
             })
         }
@@ -151,18 +160,21 @@ class DragItViewController: UIViewController {
         //start at bottom = 270 degrees
         let centerPoint = pointOnCircleEdge(ringView!.bounds.width/2, angleInDegrees: degrees[index])
         // Create a new CircleView
-        let circleView = CircleView(frame: CGRectMake(centerPoint.x - circleWidth/2, centerPoint.y - circleWidth/2, circleWidth, circleHeight), ballColor: UIColor.blueColor().CGColor)
+        var ballColor = UIColor.blueColor().CGColor
+        if Settings().purchasedUid != "perfect_bubble40" {
+            if let image = UIImage(named: Settings().purchasedUid!) {
+                ballColor = UIColor(patternImage: image).CGColor
+            }
+        }
+        let circleView = CircleView(frame: CGRectMake(centerPoint.x - circleWidth/2, centerPoint.y - circleWidth/2, circleWidth, circleHeight), ballColor: ballColor)
         circleViewDict[videoTags[index]] = circleView
         view.addSubview(circleView)
     }
     var initialDragViewY: CGFloat = 30.0
     var isGoalReached: Bool {
         get {
-//            print(self.translatedGoalCenter)
-//            print("GoalCenter=\(self.goalView.center) dragView.center=\(self.dragView.center)")
-//            print("translatedGoalCenter=\(self.translatedGoalCenter) dragView.center=\(self.dragView.center)")
-            let rectOrigin = CGPoint(x: (self.translatedGoalCenter.x-20.0), y: (self.translatedGoalCenter.y-20.0))
-            return CGRectContainsPoint(CGRect(origin: rectOrigin, size: self.dragView.frame.size), self.dragView.center)
+            let rectOrigin = CGPoint(x: (self.translatedGoalCenter.x-27.5), y: (self.translatedGoalCenter.y-27.5))  // goal95/2 - drag40/2
+            return CGRectContainsPoint(CGRect(origin: rectOrigin, size: CGSize(width: 55, height: 55)), self.dragView.center)  //95 -40
         }
     }
     let dragAreaPadding = 5
@@ -190,12 +202,12 @@ class DragItViewController: UIViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        earnCoin()  //show available credits
-        if Settings().mybackDrops.count > 1 {
-            for i in 0..<backDrops.count {
-                if backDrops[i] == Settings().mybackDrops.last {
-                    backDropImageView.image = UIImage(named: self.backDrops[i])
-                }
+        coinCount = 0
+        coins.image = nil
+        earnCoin()  //fresh coins (only get credit for each 3 coins per game) not a bug
+        for i in 0..<backDrops.count {
+            if backDrops[i] == Settings().mybackDrops.last {
+                backDropImageView.image = UIImage(named: self.backDrops[i])
             }
         }
         setAutoStartTimer()
@@ -250,7 +262,7 @@ class DragItViewController: UIViewController {
             autoStartTimer =  NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "fireAutoStart:", userInfo: nil, repeats: true)
         }
     }
-    var level = 0
+    var level = 1
     var difficulty = 2
     var ctr = 1
     var ctr2 = CGFloat(1)
@@ -273,7 +285,7 @@ class DragItViewController: UIViewController {
         } else {
             ctr3 = -1 * ctr3
         }
-        print("level=\(level) difficulty=\(difficulty) ctr=\(ctr) ctr2=\(ctr2) ctr3=\(ctr3)")
+        //print("level=\(level) difficulty=\(difficulty) ctr=\(ctr) ctr2=\(ctr2) ctr3=\(ctr3)")   debug**
     }
 
     override func viewDidLayoutSubviews() {
@@ -287,23 +299,25 @@ class DragItViewController: UIViewController {
         returnToStartLocationAnimated(false)
         dragAreaView.bringSubviewToFront(dragView)
         dragAreaView.bringSubviewToFront(goalView)
+        view.layoutIfNeeded()
+//        arrowCenterYLayoutConstraint.constant = 0
+        resetCoins()
         removeBalls()
         addBalls()
-        view.layoutIfNeeded()
-        arrowCenterYLayoutConstraint.constant = 0
     }
     // MARK: Actions
     @IBAction func panAction() {
-        if self.panGesture.state == .Changed {
-            self.moveObject()
+        if panGesture.state == .Changed {
+            moveObject()
         }
-        else if self.panGesture.state == .Ended {
-            if self.isGoalReached {
-                self.returnToStartLocationAnimated(false)
-                self.moveObject()
-                rotateView(goalView, degrees: 360.0)  //performSegue
+        else if panGesture.state == .Ended {
+            if isGoalReached {
+                returnToStartLocationAnimated(false)
+                moveObject()   //resets goalLabel
+                rotateView(goalView, degrees: 360.0)  //--> performSegue
             } else {
-                self.returnToStartLocationAnimated(true)
+                returnToStartLocationAnimated(true)
+                updateGoalView()   //resets goalLabel if white
             }
         }
     }
@@ -373,7 +387,7 @@ class DragItViewController: UIViewController {
         self.dragHereLabel.textColor = goalColor
         self.dragHereLabel.text = self.isGoalReached ? "Drop!" : "Drag here!"
         if difficulty < Constants.MaxDifficulty {
-            difficulty++
+            difficulty += 1
         } else {
             difficulty = 9
         }
@@ -389,7 +403,8 @@ class DragItViewController: UIViewController {
                 completion: nil)
         }
     }
-    let backDrops = ["aurora-6-iss-150318.jpg",
+    let backDrops = [
+        "aurora-6-iss-150318.jpg",
         "Black_hole2048.jpg",
         "bluePlanet.jpg",
         "Clouds_outer_space_planets_earth.jpg",
@@ -399,8 +414,10 @@ class DragItViewController: UIViewController {
         "IMG_3562.jpg",
         "Outer_space_planets_earth_men_fantasy.jpg",
         "space_3d_art_planet_earth_apocalyptic.jpg",
-        "sunrise_glory-wide.jpg"]
-    let ballSkins = ["arrow40",
+        "sunrise_glory-wide.jpg"
+    ]
+    let ballSkins = [
+        "arrow40",
         "asian40",
         "balloonRing40",
         "bluePlanet40",
@@ -409,7 +426,8 @@ class DragItViewController: UIViewController {
         "edd40",
         "globe40",
         "vectorA40",
-        "vectorB40"]
+        "vectorB40"
+    ]
     // MARK: - get coins!
     lazy var coins: UIImageView = {
         let size = CGSize(width: 42.0, height: 20.0)
@@ -437,24 +455,31 @@ class DragItViewController: UIViewController {
         largeCoin.center = CGPoint(x: midx, y: view.bounds.midY)
     }
     func earnCoin() {  //show available credits
-        self.coinCount += Settings().availableCredits  //move first because of annimation delay
+        self.coinCount += 1
+        if self.coinCount % 3 == 0 {  //move first because of annimation delay
+            Settings().availableCredits += 1
+        }
         //prepare for annimation
         largeCoin.image = UIImage(named: "1000CreditsSWars1.png")
-        resetCoins()
         largeCoin.alpha = 1
         largeCoin.center.y = view.bounds.minY //move off screen but alpha = 1
         UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+            self.resetCoins()
             self.largeCoin.alpha = 0
             }, completion: nil)
         //prepare for annimation
         coinCountLabel.alpha = 0
         coinCountLabel.center.y = view.bounds.maxY //move off screen
-        if let image = UIImage(named: "1000Credits2-20.png") {
+        let images = (0...2).map {
+            UIImage(named: "1000Credits\($0)-20.png") as! AnyObject
+        }
+        if let image = images[min(coinCount - 1, 2)] as? UIImage {
             coins.image = image
             coins.alpha = 0
             coins.center.y = view.bounds.maxY //move off screen
+            let offset = coinCount == 3 ? 0 : min(self.coinCount, 2)
             UIView.animateWithDuration(4.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-                self.coinCountLabel.text = "\(Settings().availableCredits)"
+                self.coinCountLabel.text = "\(Settings().availableCredits * 3 + offset)"
                 self.resetCoins()
                 self.coins.alpha = 1
                 self.coinCountLabel.alpha = 1

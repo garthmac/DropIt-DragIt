@@ -52,6 +52,7 @@ struct User {
             User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "edd40", password: "foo"),
             User(name: "John", company: "Stanford", highScore: "999", highScoreDate: "2015-06-20", login: "burning40", password: "foo"),
             User(name: "Bad", company: "Criminals, Inc.", highScore: "6,666", highScoreDate: "2015-06-06", login: "bluePlanet40", password: "foo"),
+            User(name: "John", company: "Stanford", highScore: "999", highScoreDate: "2015-06-20", login: "u52b", password: "foo"),
             User(name: "Bad", company: "Criminals, Inc.", highScore: "6,666", highScoreDate: "2015-06-06", login: "Clouds_outer_space_planets_earth.jpg", password: "foo"),
             User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "digital_art_1024x1024.jpg", password: "foo"),
             User(name: "Johny", company: "Apple", highScore: "10,222", highScoreDate: "2015-04-01", login: "glory.jpg", password: "foo"),
@@ -60,7 +61,12 @@ struct User {
             User(name: "Bad", company: "Criminals, Inc.", highScore: "6,666", highScoreDate: "2015-06-06", login: "space_3d_art_planet_earth_apocalyptic.jpg", password: "foo"),
             User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "bluePlanet.jpg", password: "foo"),
             User(name: "Johny", company: "Apple", highScore: "10,222", highScoreDate: "2015-04-01", login: "Black_hole2048.jpg", password: "foo"),
-            User(name: "Madison", company: "World", highScore: "18,222", highScoreDate: "2015-05-11", login: "heavensDeclare.jpg", password: "foo")
+            User(name: "Madison", company: "World", highScore: "18,222", highScoreDate: "2015-05-11", login: "heavensDeclare.jpg", password: "foo"),
+            User(name: "John", company: "Stanford", highScore: "999", highScoreDate: "2015-06-20", login: "u66b", password: "foo"),
+            User(name: "Bad", company: "Criminals, Inc.", highScore: "6,666", highScoreDate: "2015-06-06", login: "u90b", password: "foo"),
+            User(name: "Good", company: "Rescue, Inc.", highScore: "8,888", highScoreDate: "2015-06-21", login: "u96b", password: "foo"),
+            User(name: "Johny", company: "Apple", highScore: "10,222", highScoreDate: "2015-04-01", login: "u125b", password: "foo"),
+            User(name: "Madison", company: "World", highScore: "18,222", highScoreDate: "2015-05-11", login: "u190b", password: "foo")
             ] {
             theDatabase[user.login] = user
         }

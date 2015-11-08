@@ -89,6 +89,14 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         get { return backDropImages! }
         set { self.pickerDataSource2 = newValue }
     }
+    private var pickerDataSource4: [UIImage] { // a computed property instead of func
+        get {
+            return (0..<self.bonusTimes.count).map {
+                UIImage(named: self.bonusTimes[$0])!
+            }
+        }
+        set { self.pickerDataSource4 = newValue }
+    }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 { return 1 }
         if pickerView.tag == 2 { return 1 }
@@ -109,7 +117,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
                 return pickerDataSource2.count
             }
         }
-        return pickerDataSource.count
+        return pickerDataSource4.count
     }
     //MARK: - UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -139,7 +147,12 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 2 {
             iv = UIImageView(image: pickerDataSource2[row])
-            iv.bounds = CGRect(x: 0, y: 0, width: 150, height: 75)
+            iv.bounds = CGRect(x: 0, y: 0, width: 130, height: 65)
+            return iv
+        }
+        if component == 4 {
+            iv = UIImageView(image: pickerDataSource4[row])
+            iv.bounds = CGRect(x: 0, y: 0, width: 65, height: 65)
             return iv
         }
         return UIView()
@@ -154,7 +167,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     var selectedLogin2: String?
     var selectedPaddle3: UIImage?
     var selectedLogin3: String?
-    var selectedPaddleWidth4: UIImage?
+    var selectedBonusTime4: UIImage?
     var selectedLogin4: String?
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -177,12 +190,15 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             selectedAudio2 = pickerDataSource2[row]
             return selectedLogin2 = backDrops![row]
         }
+        if component == 4 {
+            selectedBonusTime4 = pickerDataSource4[row]
+            selectedLogin4 = bonusTimes[row]
+        }
     }
     private var availableCredits: Int { // a computed property instead of func
         get { return Settings().availableCredits }
         set {
             Settings().availableCredits = newValue
-            updateShopTab()
         }
     }
     let helper = IAPHelper()
@@ -212,7 +228,6 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         helpPickerView.dataSource = self
         creditsPickerView.delegate = self
         creditsPickerView.dataSource = self
-        //prepareTabBar()
         for aView in view.subviews {
             if let button = aView as? UIButton {
                 if (0...9).contains(button.tag) {
@@ -244,12 +259,13 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         pickerView(userPickerView, didSelectRow: 3, inComponent: 0)
         helpPickerView.selectRow(Settings().lastHint, inComponent: 0, animated: true)
         updateMySkins(Settings().purchasedUid!)
-        userPickerView.selectRow(Settings().backDropChoice, inComponent: 2, animated: true)
-        pickerView(userPickerView, didSelectRow: Settings().backDropChoice, inComponent: 2)
+        var choice = Settings().backDropChoice
+        userPickerView.selectRow(choice, inComponent: 2, animated: true)
+        pickerView(userPickerView, didSelectRow: choice, inComponent: 2)
         showBuyCreditsAction(UIButton())
-    }
-    func updateShopTab() {
-//        shopTabBarItem.badgeValue = "\(availableCredits)"   //everything costs 10 credits or $1
+        choice = Settings().bonusTime - DragItViewController.Constants.BonusTime
+        userPickerView.selectRow(choice, inComponent: 4, animated: true)
+        pickerView(userPickerView, didSelectRow: choice, inComponent: 4)
     }
     func warnIfCreditsLow() {
         if availableCredits < 10 {
@@ -271,27 +287,25 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             warnIfCreditsLow()
         }
         helper.setIAPs()
-        updateShopTab()
     }
     //MARK: - Action buySelection
     @IBAction func buySelection(sender: UIButton) {
         switch sender.tag {
-        case 0: //println(sender.tag)
+        case 0: //print(sender.tag)
             checkout("Deduct 10 coins for selected Ball skin?", sender: sender)
-        case 1: //println(sender.tag)
-            //let paddleBallTabBarItem = tabBarController!.tabBar.items![1]
+        case 1: //print(sender.tag)
             if let login = self.selectedLogin1 { //can only happen if the wheel is spun
                 let loggedInUser = User.login(login, password: "foo") //SWAP ball out to other owned ball
                 print(loggedInUser)
                 Settings().purchasedUid = loggedInUser.login  //new
-                //paddleBallTabBarItem.badgeValue = login
-            } else {
-                //paddleBallTabBarItem.badgeValue = "tennis"
             }
-//            self.tabBarController!.selectedIndex = 0
-        case 2: //println(sender.tag)
+        case 2: //print(sender.tag)
             checkout("Deduct 10 coins for selected BackDrop image?", sender: sender)
-        case 5: //println(sender.tag)
+        case 4: //print(sender.tag)
+            let cost = minimumPWCredits()
+            let msg = "Deduct " + String(cost) + " coins for selected bonus Time extension?"
+            checkout(msg, sender: sender)
+        case 5: //print(sender.tag)
             checkout("Add \(chosenNumberOfCredits()) game Credits?", sender: sender)
         default: break
         }
@@ -345,10 +359,37 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             } else {
                 warnIfCreditsLow()
             }
+        case 4: //add selected bonusTime
+            let minPWC = self.minimumPWCredits()
+            if availableCredits >= minPWC {
+                availableCredits -= minPWC
+                let loggedInUser = User.login(self.selectedLogin4!, password: "foo") //new bonusTime
+                print(loggedInUser)
+                for i in 0..<bonusTimes.count {
+                    if bonusTimes[i] == self.selectedLogin4! {
+                        Settings().bonusTime = DragItViewController.Constants.BonusTime + i
+                    }
+                }
+                returnToDragIt()
+            } else {
+                if availableCredits < minPWC {
+                    alert("You have \(availableCredits) Credits!", message: "(you need \(self.minimumPWCredits()))...before buying extra bonus scoring seconds...")
+                }
+            }
         case 5: //add selected credits to game
             purchase()
         default: break
         }
+    }
+    func minimumPWCredits() -> Int {
+        var minimumCredits = 10
+        for i in 0..<bonusTimes.count {
+            if bonusTimes[i] == self.selectedLogin4! {
+                minimumCredits = i * 10
+                return minimumCredits
+            }
+        }
+        return 10
     }
     func alert(title: String, message: String) {
         let myAlert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -378,25 +419,42 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             helper.pay4Credits(credits)
         }
     }
-    let creditOptions = ["  $0.99  ⇢    10 Credits",
+    let creditOptions = [
+        "  $0.99  ⇢   10 Credits",
         "  $2.99  ⇢   40 Credits",
         "  $4.99  ⇢   70 Credits",
         "  $9.99  ⇢  150 Credits",
         " $19.99  ⇢  350 Credits",
         " $49.99  ⇢ 1000 Credits",
-        " $99.99  ⇢ 2500 Credits"]
-    let hints = ["Tap any green [Ball] to unlock a Video",
-        "Drag RedBlock into center circle to play selected video!",
-        "Tap [Demo] to view on RedBlock website",
+        " $99.99  ⇢ 2500 Credits"
+    ]
+    let hints = [
+        "Drag RedBlock into GoalCircle, then circle ring changes!",
+        "Start drag from top right corner for easier viewing",
+        "After every 3rd Goal, you will go to Timed Bonus round!",
+        "Tap [Demo] to view demo video on RedBlock website",
         "Tap [Back] to return",
-        "[SHOP] for Ball skins, background images",
-        "switch <Settings> autoStart for random video...",
-        "...Tap [Back] to autoStart new random video",
-        "Turn off AutoStart in <Settings> to stop autoStart",
-        "Turn off Continuous in <Settings> to stop repeat video",
+        "Tap [SHOP] for BallSkins, BackDrop images, extra BonusTime",
+        "Immediately Tap anywhere on screen in Bonus round!",
+        "Hurry in Bonus round, it only lasts so long!",
+        "Pan screen to attach/drag/drop a redBlock onto the Spoon",
+        "Note: redBlock will attach/jump to your finger when u Pan",
+        "...watch progress indicator for end of tap/drag/drop scoring",
+        "After RedBlocks settle down...BONUS Credits are awarded!",
+        "...progress indicator reverses, Bonus appears, times up!",
+        "Use your accumulated Credits to [SHOP] and buy stuff!",
         "CREDITS cost $1 per 10 Credits...better deal if you buy more",
-        "Personalized ball skins cost $0.99 or 10 Credits each",
+        "Personalized BallSkins cost $0.99 or 10 Credits each",
         "Personalized backDrops cost $0.99 or 10 Credits each",
-        "Start drag from top right corner for easier viewing"]
+        "Buy extra BonusTime...extends all Bonus scoring intervals!"
+    ]
+    let bonusTimes = [
+        "u52b",
+        "u66b",
+        "u90b",
+        "u96b",
+        "u125b",
+        "u190b",
+    ]
 
 }
