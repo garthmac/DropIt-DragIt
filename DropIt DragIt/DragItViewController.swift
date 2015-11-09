@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-let model = UIDevice.currentDevice().model
 
 func degreesToRadians(degrees: Double) -> CGFloat {
     return CGFloat(degrees * M_PI / 180.0)
@@ -41,10 +40,11 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         static let Demo2URL = "https://player.vimeo.com/video/141500688?autoplay=1"
         static let Demo3URL = "https://player.vimeo.com/video/141498589?autoplay=1"
         static let MarketingURL = "https://redblockblog.wordpress.com/marketing/"
-        static let MaxDifficulty = 75
         static let MoveUpDown = "Verticle"
         static let MoveLeftRight = "Horizontal"
     }
+    let model = UIDevice.currentDevice().model
+    var maxDifficulty = 75
     var circleViewDict = [String:CircleView]()
     let videoTags = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
     let degrees: [Double] = [270, 310, 350, 30, 70, 110, 150, 190, 230]
@@ -190,6 +190,9 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
         //printFonts()
         prepareAudios()
+        if !model.hasPrefix("iPad") {
+            maxDifficulty = 49
+        }
         url = NSURL(string: Constants.DragItDemoURL)
         creditsURL = NSURL(string: Constants.Demo3URL)
         lastBounds = self.view.bounds
@@ -302,7 +305,7 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         } else {
             ctr3 = -1 * ctr3
         }
-        //print("level=\(level) difficulty=\(difficulty) ctr=\(ctr) ctr2=\(ctr2) ctr3=\(ctr3)")   debug**
+        //print("level=\(level) difficulty=\(difficulty) ctr=\(ctr) ctr2=\(ctr2) ctr3=\(ctr3)")   //debug**
     }
 
     override func viewDidLayoutSubviews() {
@@ -403,7 +406,7 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         self.goalView.layer.borderColor = goalColor.CGColor
         self.dragHereLabel.textColor = goalColor
         self.dragHereLabel.text = self.isGoalReached ? "Drop!" : "Drag here!"
-        if difficulty < Constants.MaxDifficulty {
+        if difficulty < maxDifficulty {
             difficulty += 1
         } else {
             difficulty = 9

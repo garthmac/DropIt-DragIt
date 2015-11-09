@@ -22,7 +22,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     @IBOutlet weak var creditsPickerYLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var helpPickerYLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var newsLine: UIButton!
-    
+    let model = UIDevice.currentDevice().model
     @IBAction func showHelpAction(sender: UIButton) {
         if helpPickerView.hidden {
             creditsPickerView.hidden = true
@@ -44,7 +44,6 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
     }
     //MARK: - UIPickerViewDataSource
-    let model = UIDevice.currentDevice().model
     var pickerDataSourceHelp: [UIButton] { // a computed property instead of func
         get {
             return (0..<self.hints.count).map {

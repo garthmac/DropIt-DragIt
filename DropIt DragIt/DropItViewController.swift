@@ -12,6 +12,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
 
     @IBOutlet weak var gameView: BezierPathView!
     @IBOutlet weak var progressView: UIProgressView!
+    let model = UIDevice.currentDevice().model
     lazy var animator: UIDynamicAnimator = {
         let lazyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
         lazyCreatedDynamicAnimator.delegate = self
@@ -100,7 +101,6 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
 
         barrierOrigin = CGPoint(x: gameView.bounds.midX/2 + offset/2, y: gameView.bounds.midY/2)
         var r = CGFloat(100)
-        let model = UIDevice.currentDevice().model
         if !model.hasPrefix("iPad") {
             r = r - offset
         }
@@ -117,6 +117,9 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         bonusProgressTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "fireBonusProgess:", userInfo: nil, repeats: true)  //fire every 1/2 second
         if Settings().availableCredits > 9 {
             gameView.backgroundColor = UIColor.random
+            if gameView.backgroundColor == UIColor.blueColor() {
+                scoreBoard.textColor = UIColor.redColor()
+            }
         }
     }
     var progressCompleted = false
@@ -163,7 +166,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
                     }
                 }
             }
-            Settings().availableCredits += self!.score
+            Settings().availableCredits += Int(round(Double(self!.score) / 3.0))  //earn 1 credit(=3 coins) per 3 bonus points (rounded)
             self!.showBonusScore(true)  //show available credits
             self!.removeBonusBlocks(true)  //2 seconds 10 + 2 = 12 max
         }
@@ -177,7 +180,6 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         bonusProgressTimer?.invalidate()
     }
     var dropsPerRow: Int {
-        let model = UIDevice.currentDevice().model
         if model.hasPrefix("iPad") {
             return 20
             }

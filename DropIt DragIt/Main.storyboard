@@ -915,15 +915,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get as many " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmZ-QY-xCq">
-                                <rect key="frame" x="373" y="36" width="101" height="24"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spoon.png" translatesAutoresizingMaskIntoConstraints="NO" id="rDW-HK-psn">
+                                <rect key="frame" x="499" y="76" width="81" height="30"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="ComicSansMS" family="Comic Sans MS" pointSize="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="58H-1O-PU7"/>
+                                    <constraint firstAttribute="height" constant="30" id="ihx-xZ-adB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get as many " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmZ-QY-xCq">
+                                <rect key="frame" x="387" y="38" width="89" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="ComicSansMS" family="Comic Sans MS" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-76.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Hu-Ch-zmd" userLabel="Drag View">
-                                <rect key="frame" x="482" y="28" width="40" height="40"/>
+                                <rect key="frame" x="484" y="28" width="40" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="JsC-r0-MLi"/>
@@ -931,14 +939,14 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as u can on the" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GB7-3Q-zRz">
-                                <rect key="frame" x="373" y="79" width="118" height="24"/>
+                                <rect key="frame" x="387" y="81" width="104" height="21"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="ComicSansMS" family="Comic Sans MS" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ComicSansMS" family="Comic Sans MS" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3G5-cV-TyM">
-                                <rect key="frame" x="373" y="114" width="207" height="20"/>
+                                <rect key="frame" x="387" y="114" width="193" height="20"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="LXl-Lk-cGJ"/>
@@ -960,14 +968,6 @@
                                     <rect key="frame" x="314" y="36" width="172" height="33"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spoon.png" translatesAutoresizingMaskIntoConstraints="NO" id="rDW-HK-psn">
-                                <rect key="frame" x="499" y="76" width="81" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="58H-1O-PU7"/>
-                                    <constraint firstAttribute="height" constant="30" id="ihx-xZ-adB"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
