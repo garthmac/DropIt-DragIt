@@ -86,8 +86,16 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         set { self.pickerDataSource1 = newValue }
     }
     private var pickerDataSource2: [UIImage] { // a computed property instead of func
-        get { return backDropImages! }
+        get {
+            return (0..<self.audios.count).map {
+                UIImage(named: self.audios[$0])!
+            }
+        }
         set { self.pickerDataSource2 = newValue }
+    }
+    private var pickerDataSource3: [UIImage] { // a computed property instead of func
+        get { return backDropImages! }
+        set { self.pickerDataSource3 = newValue }
     }
     private var pickerDataSource4: [UIImage] { // a computed property instead of func
         get {
@@ -113,8 +121,11 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             return pickerDataSource1.count
         }
         if component == 2 {
+            return pickerDataSource2.count
+        }
+        if component == 3 {
             if doneLoad {
-                return pickerDataSource2.count
+                return pickerDataSource3.count
             }
         }
         return pickerDataSource4.count
@@ -147,12 +158,17 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 2 {
             iv = UIImageView(image: pickerDataSource2[row])
-            iv.bounds = CGRect(x: 0, y: 0, width: 130, height: 65)
+            iv.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+            return iv
+        }
+        if component == 3 {
+            iv = UIImageView(image: pickerDataSource3[row])
+            iv.bounds = CGRect(x: 0, y: 0, width: 100, height: 75)
             return iv
         }
         if component == 4 {
             iv = UIImageView(image: pickerDataSource4[row])
-            iv.bounds = CGRect(x: 0, y: 0, width: 65, height: 65)
+            iv.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
             return iv
         }
         return UIView()
@@ -165,7 +181,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     var selectedLogin1: String?
     var selectedAudio2: UIImage?
     var selectedLogin2: String?
-    var selectedPaddle3: UIImage?
+    var selectedBackDrop3: UIImage?
     var selectedLogin3: String?
     var selectedBonusTime4: UIImage?
     var selectedLogin4: String?
@@ -188,7 +204,11 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         }
         if component == 2 {
             selectedAudio2 = pickerDataSource2[row]
-            return selectedLogin2 = backDrops![row]
+            return selectedLogin2 = audios[row]
+        }
+        if component == 3 {
+            selectedBackDrop3 = pickerDataSource3[row]
+            return selectedLogin3 = backDrops![row]
         }
         if component == 4 {
             selectedBonusTime4 = pickerDataSource4[row]
@@ -197,9 +217,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
     }
     private var availableCredits: Int { // a computed property instead of func
         get { return Settings().availableCredits }
-        set {
-            Settings().availableCredits = newValue
-        }
+        set { Settings().availableCredits = newValue }
     }
     let helper = IAPHelper()
     var url2: NSURL?
@@ -259,9 +277,11 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         pickerView(userPickerView, didSelectRow: 3, inComponent: 0)
         helpPickerView.selectRow(Settings().lastHint, inComponent: 0, animated: true)
         updateMySkins(Settings().purchasedUid!)
+        userPickerView.selectRow(Settings().soundChoice, inComponent: 2, animated: true)
+        pickerView(userPickerView, didSelectRow: Settings().soundChoice, inComponent: 2)
         var choice = Settings().backDropChoice
-        userPickerView.selectRow(choice, inComponent: 2, animated: true)
-        pickerView(userPickerView, didSelectRow: choice, inComponent: 2)
+        userPickerView.selectRow(choice, inComponent: 3, animated: true)
+        pickerView(userPickerView, didSelectRow: choice, inComponent: 3)
         showBuyCreditsAction(UIButton())
         choice = Settings().bonusTime - DragItViewController.Constants.BonusTime
         userPickerView.selectRow(choice, inComponent: 4, animated: true)
@@ -299,7 +319,9 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
                 print(loggedInUser)
                 Settings().purchasedUid = loggedInUser.login  //new
             }
-        case 2: //print(sender.tag)
+        case 2: //println(sender.tag)
+            checkout("Deduct 10 coins for selected Audio?", sender: sender)
+        case 3: //print(sender.tag)
             checkout("Deduct 10 coins for selected BackDrop image?", sender: sender)
         case 4: //print(sender.tag)
             let cost = minimumPWCredits()
@@ -310,14 +332,59 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         default: break
         }
     }
+    private var audioPlayer: AVAudioPlayer!
     private var path: String! = ""
+    private var soundTrack = 0
+    func prepareAudios() {
+        switch soundTrack {
+        case 0: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
+        case 1: path = NSBundle.mainBundle().pathForResource("CYMATICS- Science Vs. Music - Nigel Stanford-2", ofType: "mp3")
+        case 2: path = NSBundle.mainBundle().pathForResource("Phil Wickham-Carry My Soul(Live at RELEVANT)", ofType: "mp3")
+        case 3: path = NSBundle.mainBundle().pathForResource("Hudson - Chained", ofType: "mp3")
+        case 4: path = NSBundle.mainBundle().pathForResource("Forrest Gump Soundtrack", ofType: "mp3")
+        case 5: path = NSBundle.mainBundle().pathForResource("Titanic Soundtrack - Rose", ofType: "mp3")
+        case 6: path = NSBundle.mainBundle().pathForResource("Phil Wickham - This Is Amazing Grace", ofType: "mp3")
+        case 7: path = NSBundle.mainBundle().pathForResource("Hillsong United - No Other Name - Oceans (Where Feet May Fail)", ofType: "mp3")
+        case 8: path = NSBundle.mainBundle().pathForResource("Phil Wickham - At Your Name (Yahweh, Yahweh)", ofType: "mp3")
+        case 9: path = NSBundle.mainBundle().pathForResource("Yusuf Islam - Peace Train - OUTSTANDING!-2", ofType: "mp3")
+        case 10: path = NSBundle.mainBundle().pathForResource("Titans Spirit(Remember The Titans)-Trevor Rabin", ofType: "mp3")
+        default: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
+        }
+        let url = NSURL.fileURLWithPath(path!)
+        audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+        audioPlayer.delegate = self
+        audioPlayer.numberOfLoops = 0 //0 means play once
+        audioPlayer.prepareToPlay()
+    }
+    func fireAutoStart(timer: NSTimer) {
+        if audioPlayer?.playing == true {audioPlayer?.stop()}
+    }
     func checkout(message: String, sender: UIButton) {
         let alertController = UIAlertController(title: "Checkout", message: message, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Pay now!", style: UIAlertActionStyle.Default, handler: { (action) in
             self.buy(sender)  //this is the main use
         }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) in
-        }))
+        if sender.tag == 2 {
+            for i in 0..<audios.count {
+                if audios[i] == self.selectedLogin2! {
+                    soundTrack = i
+                    let autoStartTimer =  NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "fireAutoStart:", userInfo: nil, repeats: false)
+                    autoStartTimer
+                }
+            }
+            alertController.addAction(UIAlertAction(title: "Sample 1st ...", style: UIAlertActionStyle.Cancel, handler: { (action) in
+                self.audioPlayer?.pause()
+                self.prepareAudios()
+                if Settings().soundOn {
+                    self.audioPlayer.play()
+                } else {
+                    self.audioPlayer?.pause()
+                }
+            }))
+        } else {
+            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) in
+            }))
+        }
         presentViewController(alertController, animated: true, completion: nil)
     }
     func returnToDragIt() {
@@ -344,7 +411,25 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
                 warnIfCreditsLow()
             }
         case 1: print(sender.tag)
-        case 2: //add selected backDrop
+        case 2: //add selected sound track to game
+            if availableCredits > 9 {
+                availableCredits -= 10
+                let loggedInUser = User.login(self.selectedLogin2!, password: "foo") //new audio
+                print(loggedInUser)
+                for i in 0..<audios.count {
+                    if audios[i] == self.selectedLogin2! {
+                        Settings().soundChoice = i
+                        let results = Settings().myAudios.filter { el in el == self.selectedLogin2! }
+                        if results.isEmpty {
+                            Settings().myAudios.append(self.selectedLogin2!)
+                        }
+                    }
+                }
+                returnToDragIt()
+            } else {
+                warnIfCreditsLow()
+            }
+        case 3: //add selected backDrop
             if availableCredits > 9 {
                 availableCredits -= 10
                 let loggedInUser = User.login(self.selectedLogin2!, password: "foo") //new backDrop
@@ -419,6 +504,19 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
             helper.pay4Credits(credits)
         }
     }
+    let audios = [
+        "audio77",
+        "audio66",
+        "audio90",
+        "audio96",
+        "audio125",
+        "audio190",
+        "audio209",
+        "audio223",
+        "audio3",
+        "audio7",
+        "audio78"
+    ]
     let creditOptions = [
         "  $0.99  ⇢   10 Credits",
         "  $2.99  ⇢   40 Credits",
@@ -434,7 +532,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "After every 3rd Goal, you will go to Timed Bonus round!",
         "Tap [Demo] to view demo video on RedBlock website",
         "Tap [Back] to return",
-        "Tap [SHOP] for BallSkins, BackDrop images, extra BonusTime",
+        "Tap [SHOP] for BallSkins, BackDrops, audioTracks, +BonusTime",
         "Immediately Tap anywhere on screen in Bonus round!",
         "Hurry in Bonus round, it only lasts so long!",
         "Pan screen to attach/drag/drop a redBlock onto the Spoon",
@@ -444,6 +542,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "...progress indicator reverses, Bonus appears, times up!",
         "Use your accumulated Credits to [SHOP] and buy stuff!",
         "CREDITS cost $1 per 10 Credits...better deal if you buy more",
+        "Personalized Audio tracks cost $0.99 or 10 Credits each",
         "Personalized BallSkins cost $0.99 or 10 Credits each",
         "Personalized backDrops cost $0.99 or 10 Credits each",
         "Buy extra BonusTime...extends all Bonus scoring intervals!"
@@ -454,7 +553,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "u90b",
         "u96b",
         "u125b",
-        "u190b",
+        "u190b"
     ]
 
 }

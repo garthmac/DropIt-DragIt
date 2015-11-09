@@ -65,7 +65,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     func resetScoreBoard() {
-        scoreBoard.center = CGPoint(x: gameView.bounds.maxX - 80, y: (gameView.bounds.maxY - 80.0))
+        scoreBoard.center = CGPoint(x: gameView.bounds.midX, y: (gameView.bounds.midY - 50.0))
     }
     // MARK: View lifecycle
     override func viewDidLoad() {

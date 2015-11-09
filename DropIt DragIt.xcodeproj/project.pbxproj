@@ -69,6 +69,17 @@
 		71A8270C1BEC372E00BFAD57 /* Comic Sans MS Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71A827091BEC2F1600BFAD57 /* Comic Sans MS Bold.ttf */; };
 		71A8270E1BEE939F00BFAD57 /* 1000Credits1-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A8270D1BEE939F00BFAD57 /* 1000Credits1-20.png */; };
 		71A827101BEE93AF00BFAD57 /* 1000Credits0-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A8270F1BEE93AF00BFAD57 /* 1000Credits0-20.png */; };
+		71A8271D1BF033C600BFAD57 /* jazzloop2_70.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827121BF033C600BFAD57 /* jazzloop2_70.mp3 */; };
+		71A8271E1BF033C600BFAD57 /* CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827131BF033C600BFAD57 /* CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3 */; };
+		71A8271F1BF033C600BFAD57 /* Phil Wickham-Carry My Soul(Live at RELEVANT).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827141BF033C600BFAD57 /* Phil Wickham-Carry My Soul(Live at RELEVANT).mp3 */; };
+		71A827201BF033C600BFAD57 /* Hudson - Chained.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827151BF033C600BFAD57 /* Hudson - Chained.mp3 */; };
+		71A827211BF033C600BFAD57 /* Forrest Gump Soundtrack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827161BF033C600BFAD57 /* Forrest Gump Soundtrack.mp3 */; };
+		71A827221BF033C600BFAD57 /* Titanic Soundtrack - Rose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827171BF033C600BFAD57 /* Titanic Soundtrack - Rose.mp3 */; };
+		71A827231BF033C600BFAD57 /* Phil Wickham - This Is Amazing Grace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827181BF033C600BFAD57 /* Phil Wickham - This Is Amazing Grace.mp3 */; };
+		71A827241BF033C600BFAD57 /* Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A827191BF033C600BFAD57 /* Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3 */; };
+		71A827251BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271A1BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 */; };
+		71A827261BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271B1BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 */; };
+		71A827271BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271C1BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +170,17 @@
 		71A8270A1BEC342E00BFAD57 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		71A8270D1BEE939F00BFAD57 /* 1000Credits1-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1000Credits1-20.png"; sourceTree = "<group>"; };
 		71A8270F1BEE93AF00BFAD57 /* 1000Credits0-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1000Credits0-20.png"; sourceTree = "<group>"; };
+		71A827121BF033C600BFAD57 /* jazzloop2_70.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jazzloop2_70.mp3; sourceTree = "<group>"; };
+		71A827131BF033C600BFAD57 /* CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3"; sourceTree = "<group>"; };
+		71A827141BF033C600BFAD57 /* Phil Wickham-Carry My Soul(Live at RELEVANT).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Phil Wickham-Carry My Soul(Live at RELEVANT).mp3"; sourceTree = "<group>"; };
+		71A827151BF033C600BFAD57 /* Hudson - Chained.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hudson - Chained.mp3"; sourceTree = "<group>"; };
+		71A827161BF033C600BFAD57 /* Forrest Gump Soundtrack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Forrest Gump Soundtrack.mp3"; sourceTree = "<group>"; };
+		71A827171BF033C600BFAD57 /* Titanic Soundtrack - Rose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Titanic Soundtrack - Rose.mp3"; sourceTree = "<group>"; };
+		71A827181BF033C600BFAD57 /* Phil Wickham - This Is Amazing Grace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Phil Wickham - This Is Amazing Grace.mp3"; sourceTree = "<group>"; };
+		71A827191BF033C600BFAD57 /* Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3"; sourceTree = "<group>"; };
+		71A8271A1BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Phil Wickham - At Your Name (Yahweh, Yahweh).mp3"; sourceTree = "<group>"; };
+		71A8271B1BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3"; sourceTree = "<group>"; };
+		71A8271C1BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Titans Spirit(Remember The Titans)-Trevor Rabin.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +277,7 @@
 			children = (
 				716A4E1D1BE2B23600E66667 /* iTunesArtwork */,
 				716A4E1E1BE2B23600E66667 /* iTunesArtwork@2x */,
+				71A827111BF033A500BFAD57 /* Audio */,
 				71A827081BEC2F0200BFAD57 /* Fonts */,
 				716A4E1F1BE2B24600E66667 /* Icons */,
 				716A4E341BE2B27200E66667 /* Images */,
@@ -324,6 +347,24 @@
 				71A8270A1BEC342E00BFAD57 /* Comic Sans MS.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		71A827111BF033A500BFAD57 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				71A827121BF033C600BFAD57 /* jazzloop2_70.mp3 */,
+				71A827131BF033C600BFAD57 /* CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3 */,
+				71A827141BF033C600BFAD57 /* Phil Wickham-Carry My Soul(Live at RELEVANT).mp3 */,
+				71A827151BF033C600BFAD57 /* Hudson - Chained.mp3 */,
+				71A827161BF033C600BFAD57 /* Forrest Gump Soundtrack.mp3 */,
+				71A827171BF033C600BFAD57 /* Titanic Soundtrack - Rose.mp3 */,
+				71A827181BF033C600BFAD57 /* Phil Wickham - This Is Amazing Grace.mp3 */,
+				71A827191BF033C600BFAD57 /* Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3 */,
+				71A8271A1BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 */,
+				71A8271B1BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 */,
+				71A8271C1BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,10 +479,12 @@
 				716A4DED1BE29B6D00E66667 /* LaunchScreen.storyboard in Resources */,
 				716A4E641BE2B4FA00E66667 /* digital_art_1024x1024.jpg in Resources */,
 				716A4E6C1BE2B4FA00E66667 /* peanuts-anim5.png in Resources */,
+				71A827201BF033C600BFAD57 /* Hudson - Chained.mp3 in Resources */,
 				716A4E2D1BE2B25A00E66667 /* Icon-76@2x.png in Resources */,
 				716A4E2E1BE2B25A00E66667 /* Icon-Small-40.png in Resources */,
 				716A4E611BE2B4FA00E66667 /* Black_hole2048.jpg in Resources */,
 				716A4E681BE2B4FA00E66667 /* Outer_space_planets_earth_men_fantasy.jpg in Resources */,
+				71A827221BF033C600BFAD57 /* Titanic Soundtrack - Rose.mp3 in Resources */,
 				71A8270B1BEC342E00BFAD57 /* Comic Sans MS.ttf in Resources */,
 				716A4E331BE2B25A00E66667 /* Icon-Small@3x.png in Resources */,
 				716A4E6D1BE2B4FA00E66667 /* peanuts-anim4.png in Resources */,
@@ -449,9 +492,13 @@
 				716A4E2C1BE2B25A00E66667 /* Icon-76.png in Resources */,
 				71A827071BEBD12E00BFAD57 /* spoon.png in Resources */,
 				71A8270E1BEE939F00BFAD57 /* 1000Credits1-20.png in Resources */,
+				71A827271BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 in Resources */,
+				71A8271D1BF033C600BFAD57 /* jazzloop2_70.mp3 in Resources */,
 				716A4E711BE2B4FA00E66667 /* peanuts-anim0.png in Resources */,
+				71A8271F1BF033C600BFAD57 /* Phil Wickham-Carry My Soul(Live at RELEVANT).mp3 in Resources */,
 				716A4DEA1BE29B6D00E66667 /* Assets.xcassets in Resources */,
 				716A4E741BE2B4FA00E66667 /* sunrise_glory-wide.jpg in Resources */,
+				71A827211BF033C600BFAD57 /* Forrest Gump Soundtrack.mp3 in Resources */,
 				716A4E731BE2B4FA00E66667 /* space_3d_art_planet_earth_apocalyptic.jpg in Resources */,
 				716A4E2F1BE2B25A00E66667 /* Icon-Small-40@2x.png in Resources */,
 				716A4E3B1BE2B28C00E66667 /* 1000CreditsSWars1.png in Resources */,
@@ -461,19 +508,24 @@
 				716A4E651BE2B4FA00E66667 /* glory.jpg in Resources */,
 				716A4E661BE2B4FA00E66667 /* heavensDeclare.jpg in Resources */,
 				716A4E671BE2B4FA00E66667 /* IMG_3562.jpg in Resources */,
+				71A8271E1BF033C600BFAD57 /* CYMATICS- Science Vs. Music - Nigel Stanford-2.mp3 in Resources */,
+				71A827251BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 in Resources */,
 				716A4E5F1BE2B4FA00E66667 /* aurora-6-iss-150318.jpg in Resources */,
 				716A4E761BE2B53100E66667 /* Main.storyboard in Resources */,
 				716A4E401BE2B28C00E66667 /* arrow_up.png in Resources */,
 				716A4E6B1BE2B4FA00E66667 /* peanuts-anim6.png in Resources */,
 				716A4E6E1BE2B4FA00E66667 /* peanuts-anim3.png in Resources */,
+				71A827231BF033C600BFAD57 /* Phil Wickham - This Is Amazing Grace.mp3 in Resources */,
 				716A4E721BE2B4FA00E66667 /* snoopy-tennis.png in Resources */,
 				716A4E2B1BE2B25A00E66667 /* Icon-60@3x.png in Resources */,
+				71A827261BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 in Resources */,
 				716A4E3C1BE2B28C00E66667 /* 1000Credits2-20.png in Resources */,
 				716A4E3F1BE2B28C00E66667 /* arrow_down@3x.png in Resources */,
 				716A4E3D1BE2B28C00E66667 /* arrow_down.png in Resources */,
 				716A4E631BE2B4FA00E66667 /* Clouds_outer_space_planets_earth.jpg in Resources */,
 				716A4E3E1BE2B28C00E66667 /* arrow_down@2x.png in Resources */,
 				716A4E1B1BE29D5600E66667 /* LICENSE in Resources */,
+				71A827241BF033C600BFAD57 /* Hillsong United - No Other Name - Oceans (Where Feet May Fail).mp3 in Resources */,
 				716A4E301BE2B25A00E66667 /* Icon-Small-40@3x.png in Resources */,
 				716A4E2A1BE2B25A00E66667 /* Icon-60@2x.png in Resources */,
 				716A4E601BE2B4FA00E66667 /* badge-git-real-5d91905b69d46286cab389797ea81983.png in Resources */,

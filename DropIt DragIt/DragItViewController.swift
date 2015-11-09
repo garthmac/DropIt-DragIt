@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+let model = UIDevice.currentDevice().model
 
 func degreesToRadians(degrees: Double) -> CGFloat {
     return CGFloat(degrees * M_PI / 180.0)
@@ -15,7 +17,7 @@ func radiansToDegrees(radians: Double) -> CGFloat {
     return CGFloat(radians / M_PI * 180.0)
 }
 
-class DragItViewController: UIViewController {
+class DragItViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var backDropImageView: UIImageView!
     @IBOutlet weak var dragAreaView: UIView!
@@ -135,7 +137,7 @@ class DragItViewController: UIViewController {
             self!.level += 1
             self!.earnCoin()
         }
-        if level % 3 == 0 {
+        if level % 2 == 0 {
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) { [weak self] (success) -> Void in
                 self!.performSegueWithIdentifier(Constants.DropItSegue, sender: nil)   //--> bonus segue
@@ -186,6 +188,8 @@ class DragItViewController: UIViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //printFonts()
+        prepareAudios()
         url = NSURL(string: Constants.DragItDemoURL)
         creditsURL = NSURL(string: Constants.Demo3URL)
         lastBounds = self.view.bounds
@@ -202,6 +206,15 @@ class DragItViewController: UIViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if Settings().soundChoice != soundTrack {
+            audioPlayer.pause()
+            prepareAudios()
+        }
+        if Settings().soundOn {
+            audioPlayer.play()
+        } else {
+            audioPlayer.pause()
+        }
         coinCount = 0
         coins.image = nil
         earnCoin()  //fresh coins (only get credit for each 3 coins per game) not a bug
@@ -253,6 +266,10 @@ class DragItViewController: UIViewController {
         super.viewWillDisappear(animated)
         //remove the timer when a game hides, and start it again afterwards...
         autoStartTimer?.invalidate()
+        autoStartTimer = nil
+        if Settings().soundOn {
+            audioPlayer.pause()
+        }
         removeBalls()
     }
     // MARK: - autoStartTimer
@@ -479,12 +496,37 @@ class DragItViewController: UIViewController {
             coins.center.y = view.bounds.maxY //move off screen
             let offset = coinCount == 3 ? 0 : min(self.coinCount, 2)
             UIView.animateWithDuration(4.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-                self.coinCountLabel.text = "\(Settings().availableCredits * 3 + offset)"
+                self.coinCountLabel.text = (Settings().availableCredits * 3 + offset).addSeparator
                 self.resetCoins()
                 self.coins.alpha = 1
                 self.coinCountLabel.alpha = 1
                 }, completion: nil)
         }
+    }
+    private var audioPlayer: AVAudioPlayer!
+    private var path: String! = ""
+    private var soundTrack = 0
+    func prepareAudios() {
+        soundTrack = Settings().soundChoice
+        switch soundTrack {
+        case 0: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
+        case 1: path = NSBundle.mainBundle().pathForResource("CYMATICS- Science Vs. Music - Nigel Stanford-2", ofType: "mp3")
+        case 2: path = NSBundle.mainBundle().pathForResource("Phil Wickham-Carry My Soul(Live at RELEVANT)", ofType: "mp3")
+        case 3: path = NSBundle.mainBundle().pathForResource("Hudson - Chained", ofType: "mp3")
+        case 4: path = NSBundle.mainBundle().pathForResource("Forrest Gump Soundtrack", ofType: "mp3")
+        case 5: path = NSBundle.mainBundle().pathForResource("Titanic Soundtrack - Rose", ofType: "mp3")
+        case 6: path = NSBundle.mainBundle().pathForResource("Phil Wickham - This Is Amazing Grace", ofType: "mp3")
+        case 7: path = NSBundle.mainBundle().pathForResource("Hillsong United - No Other Name - Oceans (Where Feet May Fail)", ofType: "mp3")
+        case 8: path = NSBundle.mainBundle().pathForResource("Phil Wickham - At Your Name (Yahweh, Yahweh)", ofType: "mp3")
+        case 9: path = NSBundle.mainBundle().pathForResource("Yusuf Islam - Peace Train - OUTSTANDING!-2", ofType: "mp3")
+        case 10: path = NSBundle.mainBundle().pathForResource("Titans Spirit(Remember The Titans)-Trevor Rabin", ofType: "mp3")
+        default: path = NSBundle.mainBundle().pathForResource("jazzloop2_70", ofType: "mp3")
+        }
+        let url = NSURL.fileURLWithPath(path!)
+        audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+        audioPlayer.delegate = self
+        audioPlayer.numberOfLoops = 99 //-1 means continuous
+        audioPlayer.prepareToPlay()
     }
     /*
     // MARK: - Navigation
@@ -514,6 +556,14 @@ private extension UIColor {
         default: return UIColor.clearColor()
         }
     }
-    
 }
+private extension Int {
+    var addSeparator: String {
+        let nf = NSNumberFormatter()
+        nf.groupingSeparator = ","
+        nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        return nf.stringFromNumber(self)!
+    }
+}
+
 
