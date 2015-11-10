@@ -44,13 +44,20 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let RightOvalBarrier = "Right Oval Barrier"
         static let LeftOvalBarrier = "Left Oval Barrier"
     }
-    lazy var scoreBoard: UILabel = { let sb = UILabel(frame: CGRect(origin: CGPoint(x: -1 , y: -1), size: CGSize(width: min(self.gameView.frame.width, self.gameView.frame.height), height: 30.0)))
+    lazy var scoreBoard: UILabel = { let sb = UILabel(frame: CGRect(origin: CGPoint(x: -1 , y: -40), size: CGSize(width: min(self.gameView.frame.width, self.gameView.frame.height), height: 30.0)))
         sb.text = "Bonus! "
         sb.font = UIFont(name: "ComicSansMS-Bold", size: 34.0)
         sb.textAlignment = NSTextAlignment.Center
         sb.textColor = UIColor.blueColor()
         self.gameView.addSubview(sb)
         return sb
+    }()
+    lazy var prompt: UILabel = { let p = UILabel(frame: CGRect(origin: CGPoint(x: self.gameView.bounds.midX , y: self.gameView.bounds.maxY), size: CGSize(width: min(self.gameView.frame.width, self.gameView.frame.height), height: 40.0)))
+        p.font = UIFont(name: "ComicSansMS-Bold", size: 24.0)
+        p.textAlignment = NSTextAlignment.Center
+        p.textColor = UIColor.blueColor()
+        self.gameView.addSubview(p)
+        return p
     }()
     func showBonusScore(isBonus: Bool) {
         if isBonus {
@@ -67,6 +74,23 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     func resetScoreBoard() {
         scoreBoard.center = CGPoint(x: gameView.bounds.midX, y: (gameView.bounds.midY - 50.0))
+    }
+    func showPrompt() {
+        prompt.center.x = gameView.bounds.midX
+        prompt.text = "Tap now!"
+        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0, options: [], animations: { [weak self] (success) -> Void in
+            self!.prompt.center = CGPoint(x: self!.gameView.bounds.maxX - 70, y: (self!.gameView.bounds.maxY * 0.75))
+            }, completion: { [weak self] (success) -> Void in
+                self!.prompt.alpha = 0    //prepare for annimation
+                self!.prompt.center.x = self!.gameView.bounds.maxX
+                self!.prompt.text = "Drag￫☜Drop"
+                UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: { [weak self] (success) -> Void in
+                    self!.gameView.bringSubviewToFront(self!.prompt)
+                    self!.prompt.center = CGPoint(x: self!.gameView.bounds.minX + 80, y: (self!.gameView.bounds.minY + 25))
+                    self!.prompt.alpha = 1
+                    }, completion: nil )
+            })
+
     }
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -117,9 +141,6 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         bonusProgressTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "fireBonusProgess:", userInfo: nil, repeats: true)  //fire every 1/2 second
         if Settings().availableCredits > 9 {
             gameView.backgroundColor = UIColor.random
-            if gameView.backgroundColor == UIColor.blueColor() {
-                scoreBoard.textColor = UIColor.redColor()
-            }
         }
     }
     var progressCompleted = false
@@ -129,6 +150,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         if progressView.progress > 0.99 {
             progressCompleted = true
+            prompt.removeFromSuperview()  //after showPrompt() completes(varies by extra bonus time purchased)
             progressView.tintColor = UIColor.blueColor()  //this change rounds the progressView tint end cap
             progressView.trackTintColor = UIColor.lightGrayColor()  //this change rounds the progressView end cap
         }
@@ -143,6 +165,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
     var dropsToRemove = [UIView]()
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        showPrompt()
         let totalTime = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))  //12 seconds total
         dispatch_after(totalTime, dispatch_get_main_queue()) { [weak self] (success) -> Void in
             self!.dismissViewControllerAnimated(true, completion: nil)
@@ -259,9 +282,9 @@ private extension UIColor {
     class var random: UIColor {
         switch arc4random() % 11 {
         case 0: return UIColor.greenColor()
-        case 1: return UIColor.blueColor()
+        case 1: return UIColor.blueColor().colorWithAlphaComponent(0.5)  //dark blue
         case 2: return UIColor.orangeColor()
-        case 3: return UIColor.redColor()
+        case 3: return UIColor.redColor().colorWithAlphaComponent(0.5)  //dark burgundy
         case 4: return UIColor.purpleColor()
         case 5: return UIColor.yellowColor()
         case 6: return UIColor.brownColor()

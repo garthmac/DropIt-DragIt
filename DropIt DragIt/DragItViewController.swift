@@ -62,10 +62,14 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
     }
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        removeBalls()
         if let identifier = segue.identifier {
             switch identifier {
             case Constants.ShopSegue:
                 if let svc = segue.destinationViewController as? ShopViewController {
+                    if Settings().soundOn {
+                        audioPlayer.pause()
+                    }
                     svc.backDrops = backDrops
                     svc.backDropImages = backDropImages
                     svc.ballSkins = ballSkins
@@ -137,7 +141,7 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
             self!.level += 1
             self!.earnCoin()
         }
-        if level % 2 == 0 {
+        if level % 3 == 0 {
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) { [weak self] (success) -> Void in
                 self!.performSegueWithIdentifier(Constants.DropItSegue, sender: nil)   //--> bonus segue
@@ -176,10 +180,12 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
     var isGoalReached: Bool {
         get {
             let rectOrigin = CGPoint(x: (self.translatedGoalCenter.x-27.5), y: (self.translatedGoalCenter.y-27.5))  // goal95/2 - drag40/2
-            return CGRectContainsPoint(CGRect(origin: rectOrigin, size: CGSize(width: 55, height: 55)), self.dragView.center)  //95 -40
+            let yes = CGRectContainsPoint(CGRect(origin: rectOrigin, size: CGSize(width: 55, height: 55)), self.dragView.center)  //95 -40
+            self.dragHereLabel.text = yes ? "Drop!" : "Drag here!"
+            return yes
         }
     }
-    let dragAreaPadding = 5
+    let dragAreaPadding = 5 as CGFloat
     var lastBounds = CGRectZero
     var ringView: UIView?
     var backDropImages: [UIImage]?
@@ -214,7 +220,9 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
             prepareAudios()
         }
         if Settings().soundOn {
-            audioPlayer.play()
+            if !audioPlayer.playing {
+                audioPlayer.play()
+            }
         } else {
             audioPlayer.pause()
         }
@@ -270,9 +278,6 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         //remove the timer when a game hides, and start it again afterwards...
         autoStartTimer?.invalidate()
         autoStartTimer = nil
-        if Settings().soundOn {
-            audioPlayer.pause()
-        }
         removeBalls()
     }
     // MARK: - autoStartTimer
@@ -366,9 +371,9 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
     }
     // MARK: UI Updates
     func moveObject() {
-        let minX = CGFloat(self.dragAreaPadding)
+        let minX = self.dragAreaPadding
         let maxX = self.dragAreaView.bounds.size.width - self.dragView.bounds.size.width - minX
-        let minY = CGFloat(self.dragAreaPadding)
+        let minY = self.dragAreaPadding
         let maxY = self.dragAreaView.bounds.size.height - self.dragView.bounds.size.height - minY
         var translation =  self.panGesture.translationInView(self.dragAreaView)
         var dragViewX = self.dragViewXLayoutConstraint.constant + translation.x
@@ -405,7 +410,6 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         let goalColor = self.isGoalReached ? UIColor.whiteColor() : UIColor.redColor()     //(red: 174/255.0, green: 0, blue: 0, alpha: 1)
         self.goalView.layer.borderColor = goalColor.CGColor
         self.dragHereLabel.textColor = goalColor
-        self.dragHereLabel.text = self.isGoalReached ? "Drop!" : "Drag here!"
         if difficulty < maxDifficulty {
             difficulty += 1
         } else {

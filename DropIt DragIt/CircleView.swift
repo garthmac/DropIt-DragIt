@@ -38,10 +38,6 @@ class CircleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func animateCircle(duration: NSTimeInterval) {
-        if let image = UIImage(named: Settings().purchasedUid!) {
-            let color = UIColor(patternImage: image)
-            circleLayer.fillColor = color.CGColor
-        }
         circleLayer.strokeColor = UIColor.whiteColor().CGColor
         // We want to animate the strokeEnd property of the circleLayer
         let animation = CABasicAnimation(keyPath: "strokeEnd")

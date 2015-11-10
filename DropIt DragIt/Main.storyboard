@@ -10,7 +10,6 @@
         <mutableArray key="Comic Sans MS Bold.ttf">
             <string>ComicSansMS-Bold</string>
             <string>ComicSansMS-Bold</string>
-            <string>ComicSansMS-Bold</string>
         </mutableArray>
         <mutableArray key="Comic Sans MS.ttf">
             <string>ComicSansMS</string>
@@ -952,73 +951,35 @@
                                     <constraint firstAttribute="height" constant="20" id="LXl-Lk-cGJ"/>
                                 </constraints>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap It!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6A-UE-1TM">
-                                <rect key="frame" x="492" y="540" width="98" height="40"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="ComicSansMS-Bold" family="Comic Sans MS" pointSize="28"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="215" y="36" width="172" height="33"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="109" y="33" width="183" height="40"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="314" y="36" width="172" height="33"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="hzO-kb-dBg" firstAttribute="top" secondItem="F6A-UE-1TM" secondAttribute="bottom" constant="20" id="2e6-8G-Jlc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="F6A-UE-1TM" secondAttribute="trailing" id="6tn-hI-1kd"/>
                             <constraint firstItem="xmZ-QY-xCq" firstAttribute="centerY" secondItem="1Hu-Ch-zmd" secondAttribute="centerY" id="762-5P-RO4"/>
-                            <constraint firstItem="F6A-UE-1TM" firstAttribute="centerY" secondItem="xmZ-QY-xCq" secondAttribute="centerY" id="8BY-kQ-key"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3G5-cV-TyM" secondAttribute="trailing" id="9cI-AH-Ew8"/>
                             <constraint firstItem="xmZ-QY-xCq" firstAttribute="centerX" secondItem="P13-KY-7l9" secondAttribute="centerX" id="9lN-2Z-jiB"/>
                             <constraint firstItem="1Hu-Ch-zmd" firstAttribute="top" secondItem="tKd-PP-JRl" secondAttribute="bottom" constant="8" symbolic="YES" id="Aex-Sm-VXz"/>
                             <constraint firstItem="GB7-3Q-zRz" firstAttribute="centerY" secondItem="1Hu-Ch-zmd" secondAttribute="centerY" id="BM5-oJ-ieQ"/>
-                            <constraint firstItem="xmZ-QY-xCq" firstAttribute="top" secondItem="F6A-UE-1TM" secondAttribute="bottom" constant="16" id="EEf-71-ilX"/>
                             <constraint firstItem="3G5-cV-TyM" firstAttribute="top" secondItem="rDW-HK-psn" secondAttribute="bottom" constant="8" symbolic="YES" id="Eze-xz-u2v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="F6A-UE-1TM" secondAttribute="trailing" constant="-10" id="Fla-Vc-htG"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="F6A-UE-1TM" secondAttribute="leading" id="MHc-by-vbw"/>
                             <constraint firstItem="3G5-cV-TyM" firstAttribute="leading" secondItem="GB7-3Q-zRz" secondAttribute="leading" id="MXO-uT-IDX"/>
                             <constraint firstItem="1Hu-Ch-zmd" firstAttribute="centerX" secondItem="P13-KY-7l9" secondAttribute="centerX" id="Nps-y2-F0w"/>
                             <constraint firstItem="rDW-HK-psn" firstAttribute="centerY" secondItem="GB7-3Q-zRz" secondAttribute="centerY" id="PuP-29-L8l"/>
-                            <constraint firstItem="1Hu-Ch-zmd" firstAttribute="top" secondItem="F6A-UE-1TM" secondAttribute="bottom" constant="8" id="U2u-nH-cZR"/>
                             <constraint firstItem="GB7-3Q-zRz" firstAttribute="leading" secondItem="1Hu-Ch-zmd" secondAttribute="trailing" constant="8" id="aUB-vK-d09"/>
                             <constraint firstItem="GB7-3Q-zRz" firstAttribute="leading" secondItem="xmZ-QY-xCq" secondAttribute="leading" id="biS-FE-HMm"/>
                             <constraint firstItem="rDW-HK-psn" firstAttribute="leading" secondItem="GB7-3Q-zRz" secondAttribute="trailing" constant="8" id="jbQ-n4-2hY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rDW-HK-psn" secondAttribute="trailing" id="kyh-KU-A62"/>
                             <constraint firstItem="rDW-HK-psn" firstAttribute="top" secondItem="1Hu-Ch-zmd" secondAttribute="bottom" constant="8" symbolic="YES" id="lEO-4v-X9O"/>
-                            <constraint firstItem="xmZ-QY-xCq" firstAttribute="trailing" secondItem="F6A-UE-1TM" secondAttribute="leading" id="mzX-4j-rhQ"/>
                             <constraint firstItem="3G5-cV-TyM" firstAttribute="top" secondItem="GB7-3Q-zRz" secondAttribute="bottom" constant="28" id="r4f-hc-Hmr"/>
                             <constraint firstItem="1Hu-Ch-zmd" firstAttribute="leading" secondItem="xmZ-QY-xCq" secondAttribute="trailing" constant="8" id="sbc-Rh-QbP"/>
-                            <constraint firstItem="F6A-UE-1TM" firstAttribute="centerX" secondItem="P13-KY-7l9" secondAttribute="centerX" id="twt-Sj-Brb"/>
-                            <constraint firstItem="F6A-UE-1TM" firstAttribute="top" secondItem="tKd-PP-JRl" secondAttribute="bottom" constant="8" id="yWX-RL-Kff"/>
-                            <constraint firstItem="1Hu-Ch-zmd" firstAttribute="centerX" secondItem="F6A-UE-1TM" secondAttribute="centerX" id="ywW-Ie-BKm"/>
-                            <constraint firstItem="xmZ-QY-xCq" firstAttribute="leading" secondItem="F6A-UE-1TM" secondAttribute="trailing" constant="21" id="z9C-wB-M9z"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="9lN-2Z-jiB"/>
-                                <exclude reference="EEf-71-ilX"/>
-                                <exclude reference="mzX-4j-rhQ"/>
-                                <exclude reference="z9C-wB-M9z"/>
                                 <exclude reference="BM5-oJ-ieQ"/>
                                 <exclude reference="aUB-vK-d09"/>
                                 <exclude reference="r4f-hc-Hmr"/>
                                 <exclude reference="Nps-y2-F0w"/>
-                                <exclude reference="U2u-nH-cZR"/>
-                                <exclude reference="ywW-Ie-BKm"/>
-                                <exclude reference="6tn-hI-1kd"/>
-                                <exclude reference="8BY-kQ-key"/>
-                                <exclude reference="MHc-by-vbw"/>
-                                <exclude reference="twt-Sj-Brb"/>
-                                <exclude reference="yWX-RL-Kff"/>
                             </mask>
                         </variation>
                         <connections>

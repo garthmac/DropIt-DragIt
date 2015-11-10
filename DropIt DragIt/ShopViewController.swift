@@ -534,7 +534,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "Tap [SHOP] for BallSkins, BackDrops, audioTracks, +BonusTime",
         "Immediately Tap anywhere on screen in Bonus round!",
         "Hurry in Bonus round, it only lasts so long!",
-        "Pan screen to attach/drag/drop a redBlock onto the Spoon",
+        "Pan screen to attach/Drag-n-Drop a redBlock onto the Spoon",
         "Note: redBlock will attach/jump to your finger when u Pan",
         "...watch progress indicator for end of tap/drag/drop scoring",
         "After RedBlocks settle down...BONUS Credits are awarded!",
@@ -544,7 +544,7 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         "Personalized Audio tracks cost $0.99 or 10 Credits each",
         "Personalized BallSkins cost $0.99 or 10 Credits each",
         "Personalized backDrops cost $0.99 or 10 Credits each",
-        "Buy extra BonusTime...extends all Bonus scoring intervals!"
+        "Buy extra BonusTime...adds seconds to live Bonus scoring!"
     ]
     let bonusTimes = [
         "u52b",
