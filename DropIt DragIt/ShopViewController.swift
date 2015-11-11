@@ -431,12 +431,12 @@ class ShopViewController: UIViewController, AVAudioPlayerDelegate, UIPickerViewD
         case 3: //add selected backDrop
             if availableCredits > 9 {
                 availableCredits -= 10
-                let loggedInUser = User.login(self.selectedLogin2!, password: "foo") //new backDrop
+                let loggedInUser = User.login(self.selectedLogin3!, password: "foo") //new backDrop
                 print(loggedInUser)
                 for i in 0..<backDrops!.count {
-                    if backDrops![i] == self.selectedLogin2! {
+                    if backDrops![i] == self.selectedLogin3! {
                         Settings().backDropChoice = i
-                        Settings().mybackDrops.append(self.selectedLogin2!)
+                        Settings().mybackDrops.append(self.selectedLogin3!)
                     }
                 }
                 returnToDragIt()

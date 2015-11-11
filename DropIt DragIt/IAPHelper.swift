@@ -1,8 +1,8 @@
 //
 //  IAPHelper.swift
-//  DragIt
+//  DragDropIt
 //
-//  Created by iMac 27 on 10/20/15...addCreditz.1000
+//  Created by iMac 27 on 10/20/15
 //  Copyright (c) 2015 Garth MacKenzie. All rights reserved.
 //
 
@@ -17,7 +17,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
         if(SKPaymentQueue.canMakePayments()) {
             if list.isEmpty {
                 print("IAP is enabled, loading")
-                let productIDs = NSSet(objects: "com.garthmackenzie.DragIt.addCredits.10", "com.garthmackenzie.DragIt.addCredits.40", "com.garthmackenzie.DragIt.addCredits.70", "com.garthmackenzie.DragIt.addCredits.150", "com.garthmackenzie.DragIt.addCredits.350", "com.garthmackenzie.DragIt.addCreditz.1000", "com.garthmackenzie.DragIt.addCredits.2500")
+                let productIDs = NSSet(objects: "com.garthmackenzie.DragDropIt.addCredits.10", "com.garthmackenzie.DragDropIt.addCredits.40", "com.garthmackenzie.DragDropIt.addCredits.70", "com.garthmackenzie.DragDropIt.addCredits.150", "com.garthmackenzie.DragDropIt.addCredits.350", "com.garthmackenzie.DragDropIt.addCredits.1000", "com.garthmackenzie.DragDropIt.addCredits.2500")
                 let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
                 request.delegate = self
                 request.start()
@@ -29,7 +29,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     @IBAction func btnRemoveAds(sender: UIButton) {
         for product in list {
             let prodID = product.productIdentifier
-            if(prodID == "com.garthmackenzie.DragIt.removeads") {
+            if(prodID == "com.garthmackenzie.DragDropIt.removeads") {
                 p = product
                 buyProduct()
                 break;
@@ -90,28 +90,28 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
         for transaction in queue.transactions {
             let prodID = transaction.payment.productIdentifier
             switch prodID {
-            case "com.garthmackenzie.DragIt.removeads":
+            case "com.garthmackenzie.DragDropIt.removeads":
                 print("remove ads")
                 removeAds()
-            case "com.garthmackenzie.DragIt.addCredits.10":
+            case "com.garthmackenzie.DragDropIt.addCredits.10":
                 print("add 10 credits to account")
                 addCredits(10)
-            case "com.garthmackenzie.DragIt.addCredits.40":
+            case "com.garthmackenzie.DragDropIt.addCredits.40":
                 print("add 40 credits to account")
                 addCredits(40)
-            case "com.garthmackenzie.DragIt.addCredits.70":
+            case "com.garthmackenzie.DragDropIt.addCredits.70":
                 print("add 70 credits to account")
                 addCredits(70)
-            case "com.garthmackenzie.DragIt.addCredits.150":
+            case "com.garthmackenzie.DragDropIt.addCredits.150":
                 print("add 150 credits to account")
                 addCredits(150)
-            case "com.garthmackenzie.DragIt.addCredits.350":
+            case "com.garthmackenzie.DragDropIt.addCredits.350":
                 print("add 350 credits to account")
                 addCredits(350)
-            case "com.garthmackenzie.DragIt.addCreditz.1000":
+            case "com.garthmackenzie.DragDropIt.addCredits.1000":
                 print("add 1000 credits to account")
                 addCredits(1000)
-            case "com.garthmackenzie.DragIt.addCredits.2500":
+            case "com.garthmackenzie.DragDropIt.addCredits.2500":
                 print("add 2500 credits to account")
                 addCredits(2500)
             default:
@@ -130,28 +130,28 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
                 print(p.productIdentifier)
                 let prodID = p.productIdentifier as String
                 switch prodID {
-                case "com.garthmackenzie.DragIt.removeads":
+                case "com.garthmackenzie.DragDropIt.removeads":
                     print("remove ads")
                     removeAds()
-                case "com.garthmackenzie.DragIt.addCredits.10":
+                case "com.garthmackenzie.DragDropIt.addCredits.10":
                     print("add 10 credits to account")
                     addCredits(10)
-                case "com.garthmackenzie.DragIt.addCredits.40":
+                case "com.garthmackenzie.DragDropIt.addCredits.40":
                     print("add 40 credits to account")
                     addCredits(40)
-                case "com.garthmackenzie.DragIt.addCredits.70":
+                case "com.garthmackenzie.DragDropIt.addCredits.70":
                     print("add 70 credits to account")
                     addCredits(70)
-                case "com.garthmackenzie.DragIt.addCredits.150":
+                case "com.garthmackenzie.DragDropIt.addCredits.150":
                     print("add 150 credits to account")
                     addCredits(150)
-                case "com.garthmackenzie.DragIt.addCredits.350":
+                case "com.garthmackenzie.DragDropIt.addCredits.350":
                     print("add 350 credits to account")
                     addCredits(350)
-                case "com.garthmackenzie.DragIt.addCreditz.1000":
+                case "com.garthmackenzie.DragDropIt.addCredits.1000":
                     print("add 1000 credits to account")
                     addCredits(1000)
-                case "com.garthmackenzie.DragIt.addCredits.2500":
+                case "com.garthmackenzie.DragDropIt.addCredits.2500":
                     print("add 2500 credits to account")
                     addCredits(2500)
                 default:

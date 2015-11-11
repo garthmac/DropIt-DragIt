@@ -78,7 +78,7 @@ class DropItViewController: UIViewController, UIDynamicAnimatorDelegate {
     func showPrompt() {
         prompt.center.x = gameView.bounds.midX
         prompt.text = "Tap now!"
-        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0, options: [], animations: { [weak self] (success) -> Void in
+        UIView.animateWithDuration(3.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: { [weak self] (success) -> Void in
             self!.prompt.center = CGPoint(x: self!.gameView.bounds.maxX - 70, y: (self!.gameView.bounds.maxY * 0.75))
             }, completion: { [weak self] (success) -> Void in
                 self!.prompt.alpha = 0    //prepare for annimation

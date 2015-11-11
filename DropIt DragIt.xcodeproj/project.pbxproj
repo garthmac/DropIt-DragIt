@@ -80,6 +80,7 @@
 		71A827251BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271A1BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 */; };
 		71A827261BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271B1BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 */; };
 		71A827271BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A8271C1BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 */; };
+		71E44B4E1BF29CD3000869CA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E44B4D1BF29CD3000869CA /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,7 @@
 		71A8271A1BF033C600BFAD57 /* Phil Wickham - At Your Name (Yahweh, Yahweh).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Phil Wickham - At Your Name (Yahweh, Yahweh).mp3"; sourceTree = "<group>"; };
 		71A8271B1BF033C600BFAD57 /* Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Yusuf Islam - Peace Train - OUTSTANDING!-2.mp3"; sourceTree = "<group>"; };
 		71A8271C1BF033C600BFAD57 /* Titans Spirit(Remember The Titans)-Trevor Rabin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Titans Spirit(Remember The Titans)-Trevor Rabin.mp3"; sourceTree = "<group>"; };
+		71E44B4D1BF29CD3000869CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E44B4E1BF29CD3000869CA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +214,7 @@
 		716A4DD61BE29B6D00E66667 = {
 			isa = PBXGroup;
 			children = (
+				71E44B4D1BF29CD3000869CA /* StoreKit.framework */,
 				716A4DE11BE29B6D00E66667 /* DropIt DragIt */,
 				716A4E1C1BE2B21D00E66667 /* Assets */,
 				716A4DF61BE29B6E00E66667 /* DropIt DragItTests */,
@@ -435,6 +439,12 @@
 				TargetAttributes = {
 					716A4DDE1BE29B6D00E66667 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 7P9362E76E;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					716A4DF21BE29B6E00E66667 = {
 						CreatedOnToolsVersion = 7.1;
@@ -699,10 +709,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GARTH MACKENZIE (7P9362E76E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GARTH MACKENZIE (7P9362E76E)";
 				INFOPLIST_FILE = "DropIt DragIt/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.garthmackenzie.DropIt-DragIt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1f38285-9327-401f-9e35-6390cad0587b";
 			};
 			name = Debug;
 		};
@@ -710,10 +723,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GARTH MACKENZIE (7P9362E76E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GARTH MACKENZIE (7P9362E76E)";
 				INFOPLIST_FILE = "DropIt DragIt/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.garthmackenzie.DropIt-DragIt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1f38285-9327-401f-9e35-6390cad0587b";
 			};
 			name = Release;
 		};
