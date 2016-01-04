@@ -257,10 +257,12 @@ class DragItViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     func addBalls() {
-        for idx in 0..<9 {
-            addCircleView(idx)
+        if circleViewDict.isEmpty {
+            for idx in 0..<9 {
+                addCircleView(idx)
+            }
+            //print(circleViewDict)
         }
-        //print(circleViewDict)
     }
     func removeBalls() {
         for circle in circleViewDict.values {
